@@ -4,8 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.support.ui import Select
-
 from time import sleep
+
 
 driver = webdriver.Edge()
 driver.get("https://pi.ai/talk")
@@ -38,13 +38,13 @@ def first_screen():
 
         # Click the button => "Talk button"
         talk_button.click()
-
     except:
         pass
 
 
 # Step 2: Main screen
 def main_screen():
+    
     # menu button for the voices
     def select_voices_button():
         # select the voices button
@@ -54,7 +54,8 @@ def main_screen():
         # click on the button
         voice_button.click()
 
-    # Select the prefered voice
+    
+    # Selecting the prefered voice
     def select_the_voice():
         # Selecting the voice
         select_voice_button_xpath = '//*[@id="__next"]/main/div/div/div[3]/div[3]/div/div[1]/button[5]'
@@ -73,9 +74,7 @@ def close_voice_selector():
         EC.element_to_be_clickable((By.XPATH, close_voice_xpath))
     )
     close_voice_button.click()
-
-
-
+    
 
 def ask_question():
 
@@ -100,7 +99,6 @@ def ask_question():
         except ElementClickInterceptedException:
             pass
 
-
 # Calling the bypass function
 first_screen()
 
@@ -111,10 +109,8 @@ close_voice_selector()
 user_text = input("User: ")
 while True:
     ask_question()
-    driver.refresh()
     if user_text == "exit":
         break
-
 
 sleep(10)
 driver.quit()
